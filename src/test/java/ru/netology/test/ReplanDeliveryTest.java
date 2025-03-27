@@ -20,7 +20,7 @@ public class ReplanDeliveryTest {
         var secondPlanningDate = DataGenerator.generateDate(9);
 
         Selenide.open("http://localhost:9999");
-        $("[data-test-id='city']").setValue(validUser.getCity());
+        $("[data-test-id='city'] input").setValue(validUser.getCity());
         $("[data-test-id='date'] input").doubleClick().press(Keys.DELETE).setValue(firstPlanningDate);
         $("[data-test-id='name'] input").setValue(validUser.getName());
         $("[data-test-id='phone'] input").setValue(validUser.getPhone());
