@@ -1,18 +1,31 @@
-package ru.netology.test;
+package ru.netology.replan.test;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-import ru.netology.data.DataGenerator;
+import ru.netology.replan.data.DataGenerator;
 
 import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ReplanDeliveryTest {
+public class ReplanDeliveryTestV1 {
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
+    @AfterAll
+    static void tearDown() {
+        SelenideLogger.removeListener("allure");
+    }
+
     @Test
     void shouldReplanMeetingDate() {
         var validUser = DataGenerator.Registration.generateUser("ru");

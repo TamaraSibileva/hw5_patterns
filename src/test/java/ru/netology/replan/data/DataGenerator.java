@@ -1,4 +1,4 @@
-package ru.netology.data;
+package ru.netology.replan.data;
 
 import com.github.javafaker.Faker;
 import lombok.Value;
@@ -11,8 +11,6 @@ import java.util.Random;
 public class DataGenerator {
     private DataGenerator() {
     }
-
-//    public static Faker faker;
 
     public static String generateDate(int shift) {
         String date = LocalDate.now().plusDays(shift).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
@@ -34,10 +32,14 @@ public class DataGenerator {
         return faker.phoneNumber().phoneNumber();
     }
 
+    public static String generateInvalidPhone(String locale) {
+        Faker faker = new Faker(new Locale(locale));
+        return faker.numerify("###");
+    }
+
     public static class Registration {
         private Registration() {
         }
-
 
         public static UserInfo generateUser(String locale) {
             return new UserInfo(generateCity(), generateName(locale), generatePhone(locale));
